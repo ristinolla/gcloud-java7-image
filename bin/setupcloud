@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+mkdir -p /usr/tmp
+echo $GCLOUD_API_KEYFILE | base64 --decode --ignore-garbage > /usr/tmp/gcloud-api-key.json
+cat ./gcloud-api-key.json
+gcloud auth activate-service-account --key-file /usr/tmp/gcloud-api-key.json
+gcloud config set project $GCLOUD_PROJECT
